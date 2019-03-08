@@ -74,9 +74,22 @@ public class GameController : MonoBehaviour
         Vector3 bullPos = bull.transform.position;
         Vector3 target = listPlayers[nearest].transform.position;
         Vector3 diff = new Vector3(target.x - bullPos.x, target.y - bullPos.y, target.z - bullPos.z);
-        Vector3 realTarget = new Vector3(bullPos.x + 3 * diff.x, bullPos.y + 3 * diff.y, bullPos.z + 3 * diff.z);
+        float random = Random.Range(2.0f, 3.0f);
+        Vector3 realTarget = new Vector3(bullPos.x + random * diff.x, bullPos.y + random * diff.y, bullPos.z + random * diff.z);
 
         BullController controller = bull.GetComponent<BullController>();
-        controller.RunTo(target, realTarget);
+        controller.RunTo(nearest, target, realTarget);
+    }
+
+    public bool CheckTarget(int index)
+    {
+        GameObject player = listPlayers[index];
+        PlayerInfo info = player.GetComponent<PlayerInfo>();
+        Debug.Log(index.ToString() + info.zPosition.ToString());
+        if (info.zPosition > 50)
+        {
+            return false;
+        }
+        return false;
     }
 }

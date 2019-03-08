@@ -58,4 +58,9 @@ public class PlayerModifier : MonoBehaviour
 
         zPos.text = playerInfo.zPosition.ToString();
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        Debug.Log("Collider enter");
+    }
 }
